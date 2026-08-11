@@ -2,7 +2,7 @@
 
 Пакет для Evolution CMS 3: модуль менеджера «API документация» (Swagger UI) и команда `apidocs:generate`.
 
-Спецификация вашего API в пакет не входит — сканируется каталог из `controllers_path`.
+Спецификация API в пакет не входит — сканируется каталог из `controllers_path`.
 
 ## Требования
 
@@ -14,7 +14,7 @@
 Из каталога `core` сайта:
 
 ```bash
-php artisan package:installrequire evolution-cms/evo-swagger "*"
+php artisan package:installrequire vvvladv/evo-swagger "*"
 php artisan package:discover
 ```
 
@@ -35,7 +35,7 @@ php artisan package:discover
 ```
 
 ```bash
-composer update evolution-cms/evo-swagger
+composer update vvvladv/evo-swagger
 php artisan package:discover
 ```
 
@@ -97,7 +97,3 @@ evo-swagger/
     ├── frontend/
     └── docs/
 ```
-
-## Лицензия
-
-MIT. Автор: vvvladv.
