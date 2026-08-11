@@ -1,0 +1,34 @@
+{
+  "name": "vvvladv/evo-swagger",
+  "description": "OpenAPI / Swagger UI manager module and apidocs:generate for Evolution CMS",
+  "type": "EvolutionCMS-Package",
+  "license": "MIT",
+  "keywords": [
+    "evocms",
+    "evolution-cms",
+    "openapi",
+    "swagger"
+  ],
+  "authors": [
+    {
+      "name": "vvvladv"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "zircote/swagger-php": "^6.0 <6.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "EvolutionCMS\\EvoSwagger\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "EvolutionCMS\\EvoSwagger\\EvoSwaggerServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
