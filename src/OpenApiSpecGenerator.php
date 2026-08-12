@@ -35,9 +35,11 @@ final readonly class OpenApiSpecGenerator
         $sources = $this->scanPaths();
 
         if ($sources === []) {
-            throw new RuntimeException(
-                'evo-swagger: controllers_path не задан или каталог не существует (core/custom/config/evo-swagger.php).'
-            );
+            $configured = $this->configuredPaths();
+
+            throw new RuntimeException($configured === []
+                ? 'evo-swagger: не задан ни один каталог сканирования — укажите его на вкладке «Параметры».'
+                : 'evo-swagger: каталоги сканирования не найдены: ' . implode(', ', $configured));
         }
 
         try {
@@ -80,12 +82,19 @@ final readonly class OpenApiSpecGenerator
      */
     public function scanPaths(): array
     {
-        $path = $this->config['controllers_path'] ?? null;
+        return array_values(array_filter(
+            $this->configuredPaths(),
+            static fn (string $path): bool => is_dir($path)
+        ));
+    }
 
-        if (!is_string($path) || $path === '' || !is_dir($path)) {
-            return [];
-        }
+    /**
+     * @return list<string>
+     */
+    public function configuredPaths(): array
+    {
+        $paths = $this->config['controllers_path'] ?? [];
 
-        return [$path];
+        return is_array($paths) ? array_values(array_filter($paths, 'is_string')) : [];
     }
 }

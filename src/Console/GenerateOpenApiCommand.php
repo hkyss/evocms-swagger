@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EvolutionCMS\EvoSwagger\Console;
 
+use EvolutionCMS\EvoSwagger\Module;
 use EvolutionCMS\EvoSwagger\OpenApiSpecGenerator;
 use Illuminate\Console\Command;
 use Throwable;
@@ -35,7 +36,10 @@ final class GenerateOpenApiCommand extends Command
         }
 
         $generator = OpenApiSpecGenerator::make();
-        $output = $this->option('output') ?: $generator->defaultOutputPath();
+        $custom = (string) ($this->option('output') ?? '');
+        $output = $custom !== ''
+            ? Module::resolvePath($custom)
+            : $generator->defaultOutputPath();
         if ($format === 'yaml' && str_ends_with($output, '.json')) {
             $output = substr($output, 0, -5) . '.yaml';
         }
