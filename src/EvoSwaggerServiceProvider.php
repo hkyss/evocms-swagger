@@ -81,6 +81,6 @@ class EvoSwaggerServiceProvider extends ServiceProvider
         }
 
         $name = (string) config('evo-swagger.module_name', 'API документация');
-        $this->app->registerModule($name, $moduleFile);
+        $this->app->registerModule($name, $moduleFile, 'fa fa-file-code-o');
     }
 }
