@@ -12,7 +12,7 @@ $swaggerUiBase = rtrim($moduleFrontendUrl, '/') . '/swagger-ui';
 ?>
 <?php if ($moduleFrontendUrl !== ''): ?>
 <link rel="stylesheet" href="<?= htmlspecialchars($swaggerUiBase, ENT_QUOTES, 'UTF-8') ?>/swagger-ui.css">
-<link rel="stylesheet" href="<?= htmlspecialchars($moduleFrontendUrl, ENT_QUOTES, 'UTF-8') ?>/css/app.css?v=2">
+<link rel="stylesheet" href="<?= htmlspecialchars($moduleFrontendUrl, ENT_QUOTES, 'UTF-8') ?>/css/app.css?v=5">
 <?php endif; ?>
 
 <div class="api-docs-app">
@@ -31,22 +31,24 @@ $swaggerUiBase = rtrim($moduleFrontendUrl, '/') . '/swagger-ui';
     <?php else: ?>
         <div id="swagger-ui" class="api-docs-swagger"></div>
         <script src="<?= htmlspecialchars($swaggerUiBase, ENT_QUOTES, 'UTF-8') ?>/swagger-ui-bundle.js"></script>
-        <script src="<?= htmlspecialchars($swaggerUiBase, ENT_QUOTES, 'UTF-8') ?>/swagger-ui-standalone-preset.js"></script>
         <script>
+            // BaseLayout без StandalonePreset: Standalone Topbar включает DarkModeToggle,
+            // который при prefers-color-scheme: dark вешает html.dark-mode на весь manager
+            // и ломает светлую тему модуля (цвета «инвертированы»).
             window.ui = SwaggerUIBundle({
                 spec: <?= $openApiJson ?>,
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [
-                    SwaggerUIBundle.presets.apis,
-                    SwaggerUIStandalonePreset
+                    SwaggerUIBundle.presets.apis
                 ],
                 plugins: [
                     SwaggerUIBundle.plugins.DownloadUrl
                 ],
-                layout: 'StandaloneLayout',
+                layout: 'BaseLayout',
                 tryItOutEnabled: true
             });
+            document.documentElement.classList.remove('dark-mode');
         </script>
     <?php endif; ?>
 </div>

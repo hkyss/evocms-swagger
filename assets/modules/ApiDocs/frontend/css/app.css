@@ -1,31 +1,33 @@
 :root {
-    --ad-bg: #faf8f7;
+    --ad-bg: #f7f8fa;
     --ad-surface: #ffffff;
-    --ad-ink: #252525;
-    --ad-muted: #8a8a87;
-    --ad-line: #e8e4e1;
-    --ad-accent: #e93f26;
-    --ad-accent-hover: #d13620;
-    --ad-accent-soft: #fce8e4;
-    --ad-secondary: #0a084a;
-    --ad-danger: #eb4747;
-    --ad-danger-bg: #fdecec;
-    --ad-ok: #139527;
-    --ad-ok-bg: #e7f6ea;
-    --ad-radius: 16px;
-    --ad-radius-sm: 12px;
-    --ad-shadow: 0 8px 24px rgba(37, 37, 37, 0.06);
-    --ad-font: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --ad-font-title: "Work Sans", var(--ad-font);
+    --ad-ink: #3b4151;
+    --ad-muted: #6b7280;
+    --ad-line: #e5e7eb;
+    --ad-danger: #b91c1c;
+    --ad-danger-bg: #fef2f2;
+    --ad-radius: 12px;
+    --ad-font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Keep module light even if manager html gets dark-mode */
+html.dark-mode .api-docs-app,
+html.dark-mode .api-docs-swagger .swagger-ui {
+    color: var(--ad-ink);
+    background: transparent;
+}
+
+html.dark-mode .api-docs-app {
+    background: var(--ad-bg);
 }
 
 .api-docs-app {
     box-sizing: border-box;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 24px 20px 48px;
+    padding: 24px 20px 40px;
     color: var(--ad-ink);
-    font: 14px/1.45 var(--ad-font);
+    font: 14px/1.5 var(--ad-font);
     background: var(--ad-bg);
     border-radius: var(--ad-radius);
 }
@@ -44,11 +46,10 @@
 
 .api-docs-title {
     margin: 0;
-    font-family: var(--ad-font-title);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--ad-ink);
+    letter-spacing: -0.02em;
+    color: #1f2937;
 }
 
 .api-docs-subtitle {
@@ -59,25 +60,25 @@
 
 .api-docs-subtitle code {
     padding: 1px 6px;
-    border-radius: 6px;
+    border-radius: 4px;
     background: var(--ad-surface);
     border: 1px solid var(--ad-line);
     font-size: 0.85em;
-    color: var(--ad-secondary);
+    color: var(--ad-ink);
 }
 
 .api-docs-error {
     padding: 16px 18px;
-    border: 1px solid #f0b4b4;
+    border: 1px solid #fecaca;
     background: var(--ad-danger-bg);
-    border-radius: var(--ad-radius-sm);
+    border-radius: 8px;
     color: var(--ad-danger);
 }
 
 .api-docs-error strong {
     display: block;
     margin-bottom: 4px;
-    color: var(--ad-ink);
+    color: #1f2937;
 }
 
 .api-docs-error pre {
@@ -85,18 +86,14 @@
     white-space: pre-wrap;
     word-break: break-word;
     font-size: 0.85rem;
-    color: var(--ad-ink);
+    color: #1f2937;
 }
 
 .api-docs-swagger {
     background: transparent;
 }
 
-.api-docs-swagger .swagger-ui {
-    font-family: var(--ad-font);
-    color: var(--ad-ink);
-}
-
+/* Shell only: hide chrome we already replace, leave swagger look intact */
 .api-docs-swagger .swagger-ui .topbar,
 .api-docs-swagger .swagger-ui .information-container .info .title,
 .api-docs-swagger .swagger-ui .scheme-container {
@@ -108,215 +105,34 @@
 }
 
 .api-docs-swagger .swagger-ui .info {
-    margin: 0 0 16px;
+    margin: 0 0 20px;
 }
 
-.api-docs-swagger .swagger-ui .info .title {
-    font-family: var(--ad-font-title);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--ad-secondary);
+/* Default swagger uses outline:auto — black focus box after click */
+.api-docs-swagger .swagger-ui .model-box-control:focus,
+.api-docs-swagger .swagger-ui .models-control:focus,
+.api-docs-swagger .swagger-ui .opblock-summary-control:focus {
+    outline: none;
 }
 
-.api-docs-swagger .swagger-ui .info .description p,
-.api-docs-swagger .swagger-ui .info .markdown p {
-    color: var(--ad-muted);
-    font-size: 14px;
+.api-docs-swagger .swagger-ui .model-box-control:focus-visible,
+.api-docs-swagger .swagger-ui .models-control:focus-visible,
+.api-docs-swagger .swagger-ui .opblock-summary-control:focus-visible {
+    outline: 2px solid #61affe;
+    outline-offset: 2px;
 }
 
-.api-docs-swagger .swagger-ui .opblock-tag-section {
-    margin-bottom: 12px;
-}
-
-.api-docs-swagger .swagger-ui .opblock-tag {
-    border-bottom: 1px solid var(--ad-line);
-    padding: 12px 4px;
-    font-family: var(--ad-font-title);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ad-ink);
-}
-
-.api-docs-swagger .swagger-ui .opblock-tag small {
-    color: var(--ad-muted);
-    font-weight: 400;
-}
-
-.api-docs-swagger .swagger-ui .opblock {
-    margin: 0 0 10px;
-    border: 1px solid var(--ad-line);
-    border-radius: var(--ad-radius-sm);
-    box-shadow: none;
-    background: var(--ad-surface);
-}
-
-.api-docs-swagger .swagger-ui .opblock .opblock-summary {
-    border: 0;
-    padding: 10px 12px;
-}
-
-.api-docs-swagger .swagger-ui .opblock .opblock-summary-method {
-    min-width: 72px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    text-shadow: none;
-}
-
-.api-docs-swagger .swagger-ui .opblock .opblock-summary-path,
-.api-docs-swagger .swagger-ui .opblock .opblock-summary-path__deprecated {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 13px;
-    color: var(--ad-ink);
-}
-
-.api-docs-swagger .swagger-ui .opblock .opblock-summary-description {
-    color: var(--ad-muted);
-    font-size: 13px;
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-get {
-    border-color: #c9d8ef;
-    background: #f5f8fd;
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-get .opblock-summary-method {
-    background: #3b6fd8;
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-post {
-    border-color: #cfe8d4;
-    background: var(--ad-ok-bg);
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-post .opblock-summary-method {
-    background: var(--ad-ok);
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-patch {
-    border-color: #f0dfc2;
-    background: #fff8ee;
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-patch .opblock-summary-method {
-    background: #c47a14;
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-delete {
-    border-color: #f0c4c4;
-    background: var(--ad-danger-bg);
-}
-
-.api-docs-swagger .swagger-ui .opblock.opblock-delete .opblock-summary-method {
-    background: var(--ad-danger);
-}
-
-.api-docs-swagger .swagger-ui .opblock-body {
-    background: var(--ad-surface);
-    border-top: 1px solid var(--ad-line);
-}
-
-.api-docs-swagger .swagger-ui .btn {
-    border-radius: 8px;
-    box-shadow: none;
-    font-weight: 600;
-}
-
-.api-docs-swagger .swagger-ui .btn.execute {
-    background: var(--ad-accent);
-    border-color: var(--ad-accent);
-    color: #fff;
-}
-
-.api-docs-swagger .swagger-ui .btn.execute:hover {
-    background: var(--ad-accent-hover);
-    border-color: var(--ad-accent-hover);
-}
-
-.api-docs-swagger .swagger-ui .btn.cancel {
-    background: var(--ad-accent-soft);
-    border-color: transparent;
-    color: var(--ad-accent);
-}
-
-.api-docs-swagger .swagger-ui .try-out__btn {
-    border-color: var(--ad-line);
-    color: var(--ad-secondary);
-}
-
-.api-docs-swagger .swagger-ui select,
-.api-docs-swagger .swagger-ui input[type="text"],
-.api-docs-swagger .swagger-ui textarea,
-.api-docs-swagger .swagger-ui .parameters-col_description input {
-    border: 1px solid var(--ad-line);
-    border-radius: 8px;
-    box-shadow: none;
-    font-family: inherit;
-}
-
-.api-docs-swagger .swagger-ui .parameter__name,
-.api-docs-swagger .swagger-ui .response-col_status,
-.api-docs-swagger .swagger-ui table thead tr td,
-.api-docs-swagger .swagger-ui table thead tr th {
-    color: var(--ad-ink);
-    font-weight: 600;
-}
-
-.api-docs-swagger .swagger-ui .parameter__type,
-.api-docs-swagger .swagger-ui .parameter__in {
-    color: var(--ad-muted);
-}
-
-.api-docs-swagger .swagger-ui .model-box,
-.api-docs-swagger .swagger-ui section.models {
-    background: var(--ad-surface);
-    border: 1px solid var(--ad-line);
-    border-radius: var(--ad-radius-sm);
-}
-
-.api-docs-swagger .swagger-ui section.models h4 {
-    color: var(--ad-ink);
-}
-
-.api-docs-swagger .swagger-ui .model-title,
-.api-docs-swagger .swagger-ui .prop-type {
-    color: var(--ad-secondary);
-}
-
-.api-docs-swagger .swagger-ui .highlight-code,
-.api-docs-swagger .swagger-ui .microlight {
-    border-radius: 8px;
-}
-
-.api-docs-swagger .swagger-ui .responses-inner h4,
-.api-docs-swagger .swagger-ui .responses-inner h5,
-.api-docs-swagger .swagger-ui .opblock-description-wrapper p,
-.api-docs-swagger .swagger-ui .opblock-external-docs-wrapper p,
-.api-docs-swagger .swagger-ui .opblock-title_normal p {
-    color: var(--ad-ink);
-}
-
-.api-docs-swagger .swagger-ui .tab li {
-    color: var(--ad-muted);
-    font-weight: 600;
-}
-
-.api-docs-swagger .swagger-ui .tab li.active {
-    color: var(--ad-secondary);
+.api-docs-swagger .swagger-ui .opblock.is-open .opblock-summary {
+    border-bottom-color: rgba(59, 65, 81, 0.2);
 }
 
 @media (max-width: 720px) {
     .api-docs-app {
-        padding: 16px 12px 32px;
-        border-radius: 12px;
+        padding: 16px 12px 28px;
+        border-radius: 8px;
     }
 
     .api-docs-title {
         font-size: 22px;
-    }
-
-    .api-docs-swagger .swagger-ui .opblock .opblock-summary {
-        flex-wrap: wrap;
-        gap: 8px;
     }
 }

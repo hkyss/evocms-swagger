@@ -13,14 +13,14 @@ final class GenerateOpenApiCommand extends Command
     /**
      * @var string
      */
-    protected string $signature = 'apidocs:generate
+    protected $signature = 'apidocs:generate
                             {--output= : Путь к файлу (по умолчанию из config)}
                             {--format=json : json|yaml}';
 
     /**
      * @var string
      */
-    protected string $description = 'Сгенерировать OpenAPI-спеку (evo-swagger)';
+    protected $description = 'Сгенерировать OpenAPI документацию';
 
     /**
      * @return int
